@@ -28,6 +28,11 @@ while(1){
     last unless($row);
 
     my ($book_id, $title, $author_sort, $path) = @$row;
+    $author_sort ||= 'unknown';
+    $title ||= 'unknown';
+    $title=~s#[\/\\\]\[\(\):,]*##g;
+    $author_sort=~s#[\/\\\]\[\(\):,]*##g;
+
     my $new_path = "$author_sort/$title ($book_id)";
     my $new_file_name = "$author_sort - $title";
 
